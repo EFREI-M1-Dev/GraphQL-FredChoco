@@ -2,11 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { createClient, Provider } from 'urql'
+import { createClient, Provider, fetchExchange } from 'urql'
 
 const client = createClient({
     url: 'https://rickandmortyapi.com/graphql/',
-    exchanges: []
+    exchanges: [fetchExchange],
 });
 
 
