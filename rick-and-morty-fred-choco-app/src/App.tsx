@@ -2,10 +2,13 @@ import './App.css'
 import {useQuery} from 'urql'
 import {useState} from "react";
 import {Character, CharacterProps} from "./Character";
+import {DetailCharacter} from "./DetailCharacter";
 
 
 const App = () => {
     const [page, setPage] = useState<number>(1)
+    const [currentNameCharacterDetails, setCurrentNameCharacterDetails] = useState<string | null>(null)
+
 
     const CHARACTER_QUERY = `
     query {
@@ -34,7 +37,7 @@ const App = () => {
             <h1>Characters (Page {page}/{data.characters.info.pages})</h1>
             <button onClick={() => setPage(previousPage => {
                 return previousPage == 0 ? 1 : previousPage - 1
-                })
+            })
             }>
                 Previous
             </button>
@@ -46,8 +49,16 @@ const App = () => {
             </button>
             <div className={"containerCharacters"}>
                 {data.characters.results.map((character: CharacterProps) => (
-                    <Character character={character} key={character.name} />
+                        <Character
+                            key={character.name}
+                            character={character}
+                            setDetails={() => setCurrentNameCharacterDetails(character.name)}
+                        />
                 ))}
+                { currentNameCharacterDetails &&
+                    <DetailCharacter characterName={currentNameCharacterDetails} closeModal={() => setCurrentNameCharacterDetails(null)}/>
+                }
+
             </div>
         </div>
     )

@@ -30,6 +30,10 @@ button {
     transition : transform 0.3s ease-in-out;
 }
 
+.character img {
+    border-radius : 10px;
+}
+
 .character label {
     position         : absolute;
     top              : 0;
@@ -40,4 +44,43 @@ button {
     padding          : 0.1rem;
     font-size        : 1.5rem;
     font-weight      : 500;
+    border-radius    : 10px 10px 0 0;
+}
+
+.characterModal {
+    display          : flex;
+    align-items      : flex-start;
+    justify-content  : center;
+    position         : fixed;
+    top              : 50%;
+    left             : 0;
+    right            : 0;
+    margin           : auto;
+    width            : fit-content;
+    background-color : rgba(0, 0, 0, 0.9);
+    z-index          : 1000;
+    transform        : translateY(-50%);
+    padding          : 1rem;
+    border-radius    : 10px;
+    gap              : 2rem;
+}
+
+.characterModalDetails {
+    display         : flex;
+    flex-direction  : column;
+    align-items     : flex-start;
+    justify-content : center;
+    width           : 400px;
+}
+
+
+.characterModalDetails p {
+    width           : 100%;
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+}
+
+.characterModalDetails p span:last-child {
+    font-weight : 500;
 }
