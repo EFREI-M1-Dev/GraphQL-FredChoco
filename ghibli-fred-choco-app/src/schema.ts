@@ -5,7 +5,6 @@ type Film {
     id: ID!
     title: String
     people: [People!]
-    url: String!
 }
 
 type People {
@@ -13,7 +12,6 @@ type People {
     name: String
     eye_color: String
     films: [Film!]
-    url: String!
 }
 
 type Query {
