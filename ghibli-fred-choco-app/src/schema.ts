@@ -10,7 +10,7 @@ type Film {
 type People {
     id: ID!
     name: String
-    eyeColor: String
+    eye_color: String
     films: [Film!]
 }
 
