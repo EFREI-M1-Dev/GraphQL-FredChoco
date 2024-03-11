@@ -6,6 +6,7 @@ export type PeopleModel = {
   eye_color: string;
   hair_color: string;
   films: string[];
+  url: string;
 }
 
 export type FilmModel = {
@@ -20,4 +21,5 @@ export type FilmModel = {
   running_time: number;
   rt_score: number;
   people: string[];
+  url: string;
 }

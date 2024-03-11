@@ -9,7 +9,7 @@ const config: CodegenConfig = {
         contextType: './context#DataSourceContext',
         mappers: {
           People: './models#PeopleModel',
-          Films: './models#FilmsModel'
+          Film: './models#FilmModel'
         }
       }
     }

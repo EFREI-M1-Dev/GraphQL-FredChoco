@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { PeopleModel, FilmsModel } from './models';
+import { PeopleModel, FilmModel } from './models';
 import { DataSourceContext } from './context';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -8,7 +8,6 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -21,17 +20,17 @@ export type Scalars = {
 export type Film = {
   __typename?: 'Film';
   id: Scalars['ID']['output'];
-  people: Array<People>;
-  title: Scalars['String']['output'];
+  people?: Maybe<Array<People>>;
+  title?: Maybe<Scalars['String']['output']>;
   url: Scalars['String']['output'];
 };
 
 export type People = {
   __typename?: 'People';
-  eye_color: Scalars['String']['output'];
-  films: Array<Film>;
+  eye_color?: Maybe<Scalars['String']['output']>;
+  films?: Maybe<Array<Film>>;
   id: Scalars['ID']['output'];
-  name: Scalars['String']['output'];
+  name?: Maybe<Scalars['String']['output']>;
   url: Scalars['String']['output'];
 };
 
@@ -113,7 +112,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  Film: ResolverTypeWrapper<Omit<Film, 'people'> & { people: Array<ResolversTypes['People']> }>;
+  Film: ResolverTypeWrapper<FilmModel>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   People: ResolverTypeWrapper<PeopleModel>;
   Query: ResolverTypeWrapper<{}>;
@@ -123,7 +122,7 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
-  Film: Omit<Film, 'people'> & { people: Array<ResolversParentTypes['People']> };
+  Film: FilmModel;
   ID: Scalars['ID']['output'];
   People: PeopleModel;
   Query: {};
@@ -132,17 +131,17 @@ export type ResolversParentTypes = {
 
 export type FilmResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Film'] = ResolversParentTypes['Film']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  people?: Resolver<Array<ResolversTypes['People']>, ParentType, ContextType>;
-  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  people?: Resolver<Maybe<Array<ResolversTypes['People']>>, ParentType, ContextType>;
+  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   url?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type PeopleResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['People'] = ResolversParentTypes['People']> = {
-  eye_color?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  films?: Resolver<Array<ResolversTypes['Film']>, ParentType, ContextType>;
+  eye_color?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  films?: Resolver<Maybe<Array<ResolversTypes['Film']>>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   url?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

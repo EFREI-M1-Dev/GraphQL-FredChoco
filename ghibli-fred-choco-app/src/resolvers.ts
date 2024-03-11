@@ -12,12 +12,12 @@ export const resolvers: Resolvers = {
   },
   People: {
     films: (parent, _, {dataSources}) => {
-      return dataSources.ghibliAPI.getFilmBy(parent.id)
+      return parent.films.map((film) => dataSources.ghibliAPI.getFilmBy(film.split('/').pop()))
     }
   },
   Film: {
     people: (parent, _, {dataSources}) => {
-      return parent.people.map((person) => dataSources.ghibliAPI.getPersonBy(person.id))
+      return parent.people.map((person) => dataSources.ghibliAPI.getPersonBy(person.split('/').pop()))
     }
   }
 }
