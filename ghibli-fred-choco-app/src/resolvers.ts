@@ -11,6 +11,7 @@ export const resolvers: Resolvers = {
     }
   },
   People: {
+    eyeColor: ({eye_color}) => eye_color,
     films: (parent, _, {dataSources}) => {
       return parent.films.filter((film) => film.split('/').pop() !== '').map((film) => dataSources.ghibliAPI.getFilmBy(film.split('/').pop()))
     }
