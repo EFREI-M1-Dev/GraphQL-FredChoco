@@ -27,7 +27,7 @@ type IncrementNumberOfLikesResponse {
     code: Int!
     success: Boolean!
     message: String!
-    numberOfLikes: 
+    numberOfLikes: Int!
 }
 
 
