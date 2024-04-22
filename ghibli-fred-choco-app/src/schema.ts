@@ -19,5 +19,16 @@ type Query {
     getPeople: [People!]!
 }
 
+type Mutation {
+    incrementNumberOfLikes(id: ID!): IncrementNumberOfLikesResponse!
+}
+
+type IncrementNumberOfLikesResponse {
+    code: Int!
+    success: Boolean!
+    message: String!
+    numberOfLikes: 
+}
+
 
 `
